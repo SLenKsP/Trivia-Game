@@ -114,16 +114,15 @@ var trivia = {
     function countDown() {
       console.log("timer again");
       if (timeLeft === 0) {
-        clearTimeout(remainingTime);
-        trivia.showSummary();
-        $("#summary").removeClass("d-none");
         $("form").addClass("d-none");
         $("#done").addClass("d-none");
+        clearTimeout(remainingTime);
+        trivia.showSummary();
       } else {
+        --timeLeft;
         $("#content").prepend(
           timerLine.text(`Remaining time is ${timeLeft} seconds`)
         );
-        timeLeft--;
       }
     }
   },
@@ -132,7 +131,6 @@ var trivia = {
     $("#done").on("click", function() {
       clearTimeout(remainingTime);
       trivia.showSummary();
-      $("#summary").removeClass("d-none");
       $("form").addClass("d-none");
       $(this).addClass("d-none");
     });
@@ -157,7 +155,7 @@ var trivia = {
   },
   // setting up summary page
   showSummary: function() {
-    var summary = $("<div id='summary' class='d-none'>");
+    var summary = $("<div id='summary'>");
     var summaryTitle = $("<h3>");
     console.log("answered Value: " + answered);
     summary.append(`<h3>Total: ${total}`);
@@ -166,8 +164,6 @@ var trivia = {
     summary.append(`<h3>Correct: ${correct}`);
     summary.append(`<h3>Wrong: ${notCorrect}`);
     $(".container").append(summary);
-    //trivia.gameReload();
-    trivia.gameReload();
   },
   // reload the game (not working)
   gameReload: function() {
