@@ -166,6 +166,7 @@ var trivia = {
         $("form").remove();
         $("#timer").remove();
         $("#done").remove();
+        $("#rules").remove();
         clearTimeout(remainingTime);
         trivia.showSummary();
       } else {
@@ -182,6 +183,7 @@ var trivia = {
       trivia.showSummary();
       $("#timer").remove();
       $("form").remove();
+      $("#rules").hide();
       $(this).remove();
     });
   },
@@ -236,6 +238,7 @@ var trivia = {
       $("#startBtn").removeClass("d-none");
       $("#content").removeClass("d-none");
       $("#summary").remove();
+      $("#rules").show();
       $(this).remove();
     });
   },
