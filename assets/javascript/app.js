@@ -222,7 +222,7 @@ var trivia = {
     summary.append(`<h3>Correct: ${correct}`);
     summary.append(`<h3>Wrong: ${notCorrect}`);
     summary.append(
-      "<button id='restart' type='button' class='btn text-light d-block mx-auto'><h1 class='display-4 text-info'>Restart</h4>"
+      "<button id='restart' type='button' class='btn text-light d-block mx-auto'><h1 class='display-4 text-info'>Play again...</h4>"
     );
     $(".container-fluid").append(summary);
     trivia.gameReload();
