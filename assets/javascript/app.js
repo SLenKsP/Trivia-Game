@@ -3,7 +3,7 @@ var notAnswered = 0;
 var correct = 0;
 var notCorrect = 0;
 var total = 0;
-var timeLeft = 10;
+var timeLeft = 100;
 var remainingTime;
 // trivia game object
 var trivia = {
@@ -13,18 +13,17 @@ var trivia = {
   },
   // set header text
   headerText: function() {
-    return "Trivia Game";
+    return "Trivia";
   },
   // write header to html
   setHeader: function() {
-    var headerTag = $("<h1 class= 'text-center'>"); 
+    var headerTag = $("<h1 class= 'text-center text-danger'>");
     $("#header").append(headerTag.text(this.headerText()));
     $(headerTag).addClass("display-1");
   },
   setTimerLine: function() {
-    var timeSpan = $("<span id= 'timeLeft'>");
     var timerLine = $(
-      "<h2 id='timer' class= 'text-center'>Remaining Time is <span>" +
+      "<h2 id='timer' class= 'text-center text-warning pb-2 mb-4'>Time Remaining: <span class = 'font-weight-bold text-light'>" +
         timeLeft +
         "</span> seconds.</h2> "
     );
@@ -34,60 +33,85 @@ var trivia = {
   // trivia questions - currently placeholder
   triviaQuestions: [
     {
-      question: " favorite car",
-      options: ["accord", "benz", "camry"],
-      correctAnswer: "accord"
+      question: "What type of Language javascript is?",
+      options: [
+        "Scripting",
+        "Programming",
+        "Scripting and Programming",
+        "Application"
+      ],
+      correctAnswer: "Scripting"
     },
     {
-      question: "favorite city",
-      options: ["london", "newyork", "anand"],
-      correctAnswer: "london"
+      question: "Which was the first browser to support JavaScript?",
+      options: ["Mozilla Firefox", "Netscape", "Google Chrome", "IE"],
+      correctAnswer: "Netscape"
     },
     {
-      question: "favorite fruit",
-      options: ["watermelon", "mango", "orange"],
-      correctAnswer: "watermelon"
+      question: "JavaScript is ______ Side scripting language.",
+      options: ["Server", "Client", "ISP", "Browser"],
+      correctAnswer: "Browser"
     },
     {
-      question: "favorite cologne",
-      options: ["fehrenheit", "sauvage", "la nuit de'lomme"],
-      correctAnswer: "fehrenheit"
-    } /*
-    {
-      question: "",
-      options: [],
-      correctAnswer: ""
+      question: "The external JavaScript file must contain <script> tag.",
+      options: ["True", "False"],
+      correctAnswer: "False"
     },
     {
-      question: "",
-      options: [],
-      correctAnswer: ""
+      question:
+        "JavaScript code between a pair of “script” tags are called ______",
+      options: ["Non-inline", "External", "Referenced", "Inline"],
+      correctAnswer: "Inline"
     },
     {
-      question: "",
-      options: [],
-      correctAnswer: ""
+      question:
+        "Which of the following attribute can hold the JavaScript version?",
+      options: ["LANGUAGE", "SCRIPT", "VERSION", "None of the above"],
+      correctAnswer: "LANGUAGE"
     },
     {
-      question: "",
-      options: [],
-      correctAnswer: ""
-    }*/
+      question:
+        "Which of the following is not considered a JavaScript operator?",
+      options: ["new", "this", "delete", "typeof"],
+      correctAnswer: "this"
+    },
+    {
+      question:
+        "Which method of an Array object adds and/or removes elements from an array.",
+      options: ["Reverse", "Shift", "Slice", "Splice"],
+      correctAnswer: "Splice"
+    },
+    {
+      question: "Using which statement you can test for a specific condition.",
+      options: ["select", "if", "switch", "for"],
+      correctAnswer: "if"
+    },
+    {
+      question: "Is it possible to nest functions in JavaScript?",
+      options: ["True", "False"],
+      correctAnswer: "True"
+    }
   ],
   // setting up done button after all questions answered or not answered
   setDoneBtn: function() {
     $("#content").append(
-      "<button id='done' type='button' class='btn text-light'><h1 class='display-4'>Done</h4>"
+      "<button id='done' type='button' class='btn text-info'><h1 class='display-4'>Done</h4>"
     );
   },
   // add questions to html
   loadQuestions: function() {
     total = this.triviaQuestions.length;
     notAnswered = total;
-    var form = $("<form class= questions>");
+    var form = $("<form class= 'questions text-center'>");
+
     for (var j = 0; j < this.triviaQuestions.length; j++) {
-      var questionTag = $("<h3>");
-      form.append(questionTag.text(this.triviaQuestions[j].question));
+      var questionBlock = $("<div class='border-bottom border-white'>");
+      form.append(questionBlock);
+      var questionTag = $("<h3 class='pt-0'>");
+      questionBlock.append(
+        "<hr class= 'text-light'>",
+        questionTag.text(j + 1 + " : " + this.triviaQuestions[j].question)
+      );
       for (var k = 0; k < this.triviaQuestions[j].options.length; k++) {
         var radioBtn = $(
           '<input class="p-2 mx-2" type="radio" data-type="answer" name = ' +
@@ -98,7 +122,7 @@ var trivia = {
         lbl.text(this.triviaQuestions[j].options[k]);
         radioBtn.attr("value", this.triviaQuestions[j].options[k]);
         lbl.prepend(radioBtn);
-        form.append(lbl);
+        questionBlock.append(lbl);
       }
     }
     $("#content").append(form);
@@ -182,7 +206,9 @@ var trivia = {
     summary.append(`<h3>Not Answered: ${notAnswered}`);
     summary.append(`<h3>Correct: ${correct}`);
     summary.append(`<h3>Wrong: ${notCorrect}`);
-    summary.append("<button id='restart' type='button' class='btn text-light d-block mx-auto'><h1 class='display-4'>Restart</h4>");
+    summary.append(
+      "<button id='restart' type='button' class='btn text-light d-block mx-auto'><h1 class='display-4 text-info'>Restart</h4>"
+    );
     $(".container-fluid").append(summary);
     trivia.gameReload();
   },
@@ -207,7 +233,7 @@ var trivia = {
     correct = 0;
     notCorrect = 0;
     total = 0;
-    timeLeft = 10;
+    timeLeft = 100;
     remainingTime;
     $("#timer").text("");
   },
