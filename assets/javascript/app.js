@@ -21,6 +21,16 @@ var trivia = {
     $("#header").append(headerTag.text(this.headerText()));
     $(headerTag).addClass("display-1");
   },
+  setTimerLine: function() {
+    var timeSpan = $("<span id= 'timeLeft>");
+    var timerLine = $(
+      "<h2 id='timer' class= 'text-center'>Remaining Time is <span>" +
+        timeLeft +
+        "</span> seconds.</h2> "
+    );
+
+    $("#content").append(timerLine);
+  },
   // trivia questions - currently placeholder
   triviaQuestions: [
     {
@@ -102,13 +112,13 @@ var trivia = {
       e.preventDefault();
       $(this).addClass("d-none");
       trivia.startTimer();
+      trivia.setTimerLine();
       trivia.loadQuestions();
       trivia.checkRadio();
     });
   },
   // starting up a timer
   startTimer: function() {
-    var timerLine = $("<h2 id='timer' class= 'text-center'> ");
     remainingTime = setInterval(countDown, 1000);
     console.log("timer");
     function countDown() {
@@ -116,23 +126,25 @@ var trivia = {
       if (timeLeft === 0) {
         $("form").addClass("d-none");
         $("#done").addClass("d-none");
+        $("form").remove();
+        $("#timer").remove();
         clearTimeout(remainingTime);
         trivia.showSummary();
       } else {
         --timeLeft;
-        $("#content").prepend(
-          timerLine.text(`Remaining time is ${timeLeft} seconds`)
-        );
+        // $("#content").prepend;
+        $("span").text(timeLeft);
       }
     }
   },
-  // click don actions
+  // click done actions
   clickDone: function() {
     $("#done").on("click", function() {
       clearTimeout(remainingTime);
       trivia.showSummary();
-      $("form").addClass("d-none");
-      $(this).addClass("d-none");
+      $("#timer").remove();
+      $("form").remove();
+      $(this).remove();
     });
   },
   // check the clicked answered
@@ -154,6 +166,11 @@ var trivia = {
       }
     });
   },
+  setRestartBtn: function() {
+    $("#content").append(
+      "<button id='restart' type='button' class='btn btn-primary'>Restart"
+    );
+  },
   // setting up summary page
   showSummary: function() {
     var summary = $("<div id='summary'>");
@@ -164,17 +181,23 @@ var trivia = {
     summary.append(`<h3>Not Answered: ${notAnswered}`);
     summary.append(`<h3>Correct: ${correct}`);
     summary.append(`<h3>Wrong: ${notCorrect}`);
+    summary.append(trivia.setRestartBtn);
     $(".container").append(summary);
+    trivia.gameReload();
   },
   // reload the game (not working)
   gameReload: function() {
-    console.log("resetting everything");
-    $("form").trigger("reset");
-    trivia.resetData();
-    // clearTimeout(remainingTime);
-    $("#startBtn").removeClass("d-none");
-    // $("#content").removeClass("d-none");
-    $("#summary").hide();
+    $("#restart").click(function(e) {
+      e.preventDefault();
+      console.log("resetting everything");
+      $("form").trigger("reset");
+      trivia.resetData();
+      // clearTimeout(remainingTime);
+      $("#startBtn").removeClass("d-none");
+      $("#content").removeClass("d-none");
+      $("#summary").remove();
+      $(this).remove();
+    });
   },
   // reset data (not working)
   resetData: function() {
