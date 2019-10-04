@@ -21,6 +21,7 @@ var trivia = {
     $("#header").append(headerTag.text(this.headerText()));
     $(headerTag).addClass("display-1");
   },
+  // setting up rules
   setRules: function() {
     var sectionHead = $("<ol><h1 class='text-warning'>Remember...</h1>");
     var line1 = $(
@@ -32,6 +33,7 @@ var trivia = {
     sectionHead.append(line1, line2);
     $("#rules").append(sectionHead);
   },
+  // setting up line for timer
   setTimerLine: function() {
     var timerLine = $(
       "<h2 id='timer' class= 'text-center text-warning pb-2 mb-4'>Time Remaining: <span class = 'font-weight-bold text-light'>" +
