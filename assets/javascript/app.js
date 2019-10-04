@@ -77,7 +77,7 @@ var trivia = {
   // setting up done button after all questions answered or not answered
   setDoneBtn: function() {
     $("#content").append(
-      "<button id='done' type='button' class='btn btn-dark'>Done"
+      "<button id='done' type='button' class='btn text-light'><h1 class='display-4'>Done</h4>"
     );
   },
   // add questions to html
@@ -169,7 +169,7 @@ var trivia = {
   },
   setRestartBtn: function() {
     $("#content").append(
-      "<button id='restart' type='button' class='btn btn-dark'>Restart"
+      "<button id='restart' type='button' class='btn text-light'>Restart"
     );
   },
   // setting up summary page
@@ -182,7 +182,7 @@ var trivia = {
     summary.append(`<h3>Not Answered: ${notAnswered}`);
     summary.append(`<h3>Correct: ${correct}`);
     summary.append(`<h3>Wrong: ${notCorrect}`);
-    summary.append("<button id='restart' type='button' class='btn btn-dark d-block mx-auto'>Restart");
+    summary.append("<button id='restart' type='button' class='btn text-light d-block mx-auto'><h1 class='display-4'>Restart</h4>");
     $(".container-fluid").append(summary);
     trivia.gameReload();
   },
