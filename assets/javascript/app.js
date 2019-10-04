@@ -116,11 +116,11 @@ var trivia = {
     var form = $("<form class= 'questions text-center'>");
 
     for (var j = 0; j < this.triviaQuestions.length; j++) {
-      var questionBlock = $("<div class='border-bottom border-white'>");
+      var questionBlock = $("<div>");
       form.append(questionBlock);
       var questionTag = $("<h3 class='pt-0'>");
       questionBlock.append(
-        "<hr class= 'text-light'>",
+        "<hr>",
         questionTag.text(j + 1 + " : " + this.triviaQuestions[j].question)
       );
       for (var k = 0; k < this.triviaQuestions[j].options.length; k++) {
