@@ -21,6 +21,14 @@ var trivia = {
     $("#header").append(headerTag.text(this.headerText()));
     $(headerTag).addClass("display-1");
   },
+  setRules: function() {
+    var sectionHead = $("<h1 class='text-warning'>Remember...</h1>");
+    var line1 = $("<h4 class='text-danger'>You can pick only one option</h4>");
+    var line2 = $(
+      "<h4 class='text-danger'>Once you select an option, others will be disabled</h4>"
+    );
+    $("#rules").append(sectionHead, line1, line2);
+  },
   setTimerLine: function() {
     var timerLine = $(
       "<h2 id='timer' class= 'text-center text-warning pb-2 mb-4'>Time Remaining: <span class = 'font-weight-bold text-light'>" +
@@ -240,6 +248,7 @@ var trivia = {
   // initiate the game
   gameInit: function() {
     this.mainPageStyle();
+    this.setRules();
     this.setHeader();
     this.clickStart();
   }
