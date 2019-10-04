@@ -22,12 +22,15 @@ var trivia = {
     $(headerTag).addClass("display-1");
   },
   setRules: function() {
-    var sectionHead = $("<h1 class='text-warning'>Remember...</h1>");
-    var line1 = $("<h4 class='text-danger'>You can pick only one option</h4>");
-    var line2 = $(
-      "<h4 class='text-danger'>Once you select an option, others will be disabled</h4>"
+    var sectionHead = $("<ol><h1 class='text-warning'>Remember...</h1>");
+    var line1 = $(
+      "<li><h4 class='text-danger'>You can pick only one option</h4></li>"
     );
-    $("#rules").append(sectionHead, line1, line2);
+    var line2 = $(
+      "<li><h4 class='text-danger'>Once you select an option, others will be disabled</h4></li>"
+    );
+    sectionHead.append(line1, line2);
+    $("#rules").append(sectionHead);
   },
   setTimerLine: function() {
     var timerLine = $(
