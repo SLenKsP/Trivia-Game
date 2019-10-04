@@ -1,14 +1,24 @@
+@font-face {
+  font-family: "Daneehand";
+  src: url("./Daneehand\ Demo.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  font-family: "Daneehand";
+}
 html {
   height: 100%;
 }
-#summary h3 {
+#summary h3{
   text-align: center;
 }
+
 #startBtn {
   position: relative;
   margin-top: 200px;
   margin-bottom: 200px;
 }
-.container {
-  padding-bottom: 50px;
+.container-fluid {
+  padding-bottom: 100px;
 }

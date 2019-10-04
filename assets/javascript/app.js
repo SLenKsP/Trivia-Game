@@ -9,7 +9,7 @@ var remainingTime;
 var trivia = {
   // style page
   mainPageStyle: function() {
-    $(".container").addClass("bg-dark text-primary");
+    $(".container-fluid").addClass("text-light");
   },
   // set header text
   headerText: function() {
@@ -17,12 +17,12 @@ var trivia = {
   },
   // write header to html
   setHeader: function() {
-    var headerTag = $("<h1 class= text-center>");
+    var headerTag = $("<h1 class= 'text-center'>"); 
     $("#header").append(headerTag.text(this.headerText()));
     $(headerTag).addClass("display-1");
   },
   setTimerLine: function() {
-    var timeSpan = $("<span id= 'timeLeft>");
+    var timeSpan = $("<span id= 'timeLeft'>");
     var timerLine = $(
       "<h2 id='timer' class= 'text-center'>Remaining Time is <span>" +
         timeLeft +
@@ -77,7 +77,7 @@ var trivia = {
   // setting up done button after all questions answered or not answered
   setDoneBtn: function() {
     $("#content").append(
-      "<button id='done' type='button' class='btn btn-primary'>Done"
+      "<button id='done' type='button' class='btn btn-dark'>Done"
     );
   },
   // add questions to html
@@ -128,6 +128,7 @@ var trivia = {
         $("#done").addClass("d-none");
         $("form").remove();
         $("#timer").remove();
+        $("#done").remove();
         clearTimeout(remainingTime);
         trivia.showSummary();
       } else {
@@ -168,7 +169,7 @@ var trivia = {
   },
   setRestartBtn: function() {
     $("#content").append(
-      "<button id='restart' type='button' class='btn btn-primary'>Restart"
+      "<button id='restart' type='button' class='btn btn-dark'>Restart"
     );
   },
   // setting up summary page
@@ -181,8 +182,8 @@ var trivia = {
     summary.append(`<h3>Not Answered: ${notAnswered}`);
     summary.append(`<h3>Correct: ${correct}`);
     summary.append(`<h3>Wrong: ${notCorrect}`);
-    summary.append(trivia.setRestartBtn);
-    $(".container").append(summary);
+    summary.append("<button id='restart' type='button' class='btn btn-dark d-block mx-auto'>Restart");
+    $(".container-fluid").append(summary);
     trivia.gameReload();
   },
   // reload the game (not working)
