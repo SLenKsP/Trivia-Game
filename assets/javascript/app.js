@@ -141,7 +141,7 @@ var trivia = {
       answered++;
       notAnswered--;
       var correctAns = $(this).attr("name");
-      $(`input:radio[name= ${correctAnswer}]`).attr("disabled", true);
+      $(`input:radio[name= ${correctAns}]`).attr("disabled", true);
       var selectedAnswer = $(this).attr("value");
       console.log("correct answer: " + correctAns);
       console.log("selected Answer: " + selectedAnswer);
