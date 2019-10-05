@@ -166,7 +166,7 @@ var trivia = {
         $("form").remove();
         $("#timer").remove();
         $("#done").remove();
-        $("#rules").remove();
+        $("#rules").hide();
         clearTimeout(remainingTime);
         trivia.showSummary();
       } else {
